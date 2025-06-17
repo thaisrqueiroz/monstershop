@@ -28,17 +28,7 @@ public class ProductService {
         return ProductMapper.entityToDto(savedProduct);
     }
 
-//    public Product updateProduct (Long id, Product updateProduct) {
-//        Product existingProduct = productRepository.findById(id).orElse(null);
-//        existingProduct.setName(updateProduct.getName());
-//        existingProduct.setPrice(updateProduct.getPrice());
-//        existingProduct.setImageUrl(updateProduct.getImageUrl());
-//        existingProduct.setRating(updateProduct.getRating());
-//        existingProduct.setReviewCount(updateProduct.getReviewCount());
-//        existingProduct.setFeatured(updateProduct.getFeatured());
-//    }
-//
-//    public void deleteProduct(Long id) {
-//        productRepository.deleteById(id);
-//    }
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 }
