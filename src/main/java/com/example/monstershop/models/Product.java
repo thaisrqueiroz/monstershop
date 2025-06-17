@@ -71,7 +71,7 @@ public class Product {
         this.reviewCount = reviewCount;
     }
 
-    public boolean isFeatured() {
+    public boolean getFeatured() {
         return featured;
     }
 
