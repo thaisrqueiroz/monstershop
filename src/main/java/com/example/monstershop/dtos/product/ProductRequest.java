@@ -12,5 +12,5 @@ public record ProductRequest(
         double rating,
         int reviewCount,
         boolean featured
-) {
+){
 }
