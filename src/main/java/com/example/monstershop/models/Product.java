@@ -1,6 +1,8 @@
 package com.example.monstershop.models;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -8,12 +10,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 50, nullable = false)
     private String name;
     private double price;
     private String imageUrl;
     private double rating;
     private int reviewCount;
     private boolean featured;
+
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews = new ArrayList<>();
 
     public Product(){
     }
@@ -77,5 +83,13 @@ public class Product {
 
     public void setFeatured(boolean featured) {
         this.featured = featured;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

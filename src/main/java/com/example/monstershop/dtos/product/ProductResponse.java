@@ -1,6 +1,7 @@
 package com.example.monstershop.dtos.product;
 
 public record ProductResponse(
+        Long id,
         String name,
         double price,
         String imageUrl,

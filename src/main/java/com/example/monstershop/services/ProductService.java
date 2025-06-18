@@ -5,23 +5,31 @@ import com.example.monstershop.dtos.product.ProductRequest;
 import com.example.monstershop.dtos.product.ProductResponse;
 import com.example.monstershop.models.Product;
 import com.example.monstershop.repositories.ProductRepository;
+import com.example.monstershop.repositories.ReviewRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final ReviewRepository reviewRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ReviewRepository reviewRepository) {
         this.productRepository = productRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public List<ProductResponse> getAllProducts(){
         List<Product> products = productRepository.findAll();
         return products.stream().map(product -> ProductMapper.entityToDto(product)).toList();
+    }
+
+    public ProductResponse getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+        return ProductMapper.entityToDto(product);
     }
 
     public ProductResponse addProduct(ProductRequest productRequest) {
@@ -34,9 +42,10 @@ public class ProductService {
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Product not found with id: " + id));
         existingProduct.setName(productRequest.name());
-        existingProduct.setImageUrl(productRequest.imageUrl());
         existingProduct.setPrice(productRequest.price());
+        existingProduct.setImageUrl(productRequest.imageUrl());
         existingProduct.setRating(productRequest.rating());
+        existingProduct.setFeatured(productRequest.featured());
         Product updatedProduct = productRepository.save(existingProduct);
         return ProductMapper.entityToDto(updatedProduct);
     }

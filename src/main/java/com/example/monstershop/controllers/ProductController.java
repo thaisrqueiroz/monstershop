@@ -1,18 +1,13 @@
 package com.example.monstershop.controllers;
 
-import com.example.monstershop.dtos.product.ProductMapper;
 import com.example.monstershop.dtos.product.ProductRequest;
 import com.example.monstershop.dtos.product.ProductResponse;
-import com.example.monstershop.models.Product;
 import com.example.monstershop.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class ProductController {
@@ -27,6 +22,12 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+        ProductResponse productResponse = productService.getProductById(id);
+        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+    }
+
     @PostMapping("/products")
     public ResponseEntity<ProductResponse> addProduct(@Valid @RequestBody ProductRequest productRequest) {
         return new ResponseEntity<>(productService.addProduct(productRequest), HttpStatus.CREATED);
@@ -34,9 +35,6 @@ public class ProductController {
 
     @PutMapping("/products/{id}")
     public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest updateRequest) {
-        if (Objects.isNull(updateRequest)){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Mensaje de error");
-        }
         ProductResponse response = productService.updateProduct(id, updateRequest);
         return ResponseEntity.ok(response);
     }
