@@ -5,18 +5,20 @@ import com.example.monstershop.dtos.product.ProductRequest;
 import com.example.monstershop.dtos.product.ProductResponse;
 import com.example.monstershop.models.Product;
 import com.example.monstershop.repositories.ProductRepository;
+import com.example.monstershop.repositories.ReviewRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final ReviewRepository reviewRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ReviewRepository reviewRepository) {
         this.productRepository = productRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public List<ProductResponse> getAllProducts(){
