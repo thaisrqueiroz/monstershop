@@ -3,6 +3,7 @@ package com.example.monstershop.services;
 import com.example.monstershop.dtos.product.ProductMapper;
 import com.example.monstershop.dtos.product.ProductRequest;
 import com.example.monstershop.dtos.product.ProductResponse;
+import com.example.monstershop.exceptions.ProductNotFoundException;
 import com.example.monstershop.models.Product;
 import com.example.monstershop.repositories.ProductRepository;
 import com.example.monstershop.repositories.ReviewRepository;
@@ -28,7 +29,7 @@ public class ProductService {
 
     public ProductResponse getProductById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException(id));
         return ProductMapper.entityToDto(product);
     }
 
