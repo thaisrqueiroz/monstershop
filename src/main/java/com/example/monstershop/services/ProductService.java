@@ -26,6 +26,12 @@ public class ProductService {
         return products.stream().map(product -> ProductMapper.entityToDto(product)).toList();
     }
 
+    public ProductResponse getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+        return ProductMapper.entityToDto(product);
+    }
+
     public ProductResponse addProduct(ProductRequest productRequest) {
         Product newProduct = ProductMapper.dtoToEntity(productRequest);
         Product savedProduct = productRepository.save(newProduct);
@@ -36,9 +42,10 @@ public class ProductService {
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Product not found with id: " + id));
         existingProduct.setName(productRequest.name());
-        existingProduct.setImageUrl(productRequest.imageUrl());
         existingProduct.setPrice(productRequest.price());
+        existingProduct.setImageUrl(productRequest.imageUrl());
         existingProduct.setRating(productRequest.rating());
+        existingProduct.setFeatured(productRequest.featured());
         Product updatedProduct = productRepository.save(existingProduct);
         return ProductMapper.entityToDto(updatedProduct);
     }

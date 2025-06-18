@@ -12,14 +12,16 @@ public class Review {
     private double rating;
     private String body;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
     public Review(){
     }
 
-    public Review(String username, double rating, String body){
+    public Review(Product product, Long id, String username, double rating, String body){
+        this.product = product;
+        this.id = id;
         this.username = username;
         this.rating = rating;
         this.body = body;
