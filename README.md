@@ -15,12 +15,13 @@ Monster Shop es an e-commerce application for buying adorable monster plushies, 
 
 ## 🛠️ Technologies
 
-- Java 21 [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
-- SpringBoot [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)](#)
-- Git [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](#)
-- IntelliJ IDEA [![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?logo=intellij-idea&logoColor=white)](#)
-- MySQL [![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff)](#)
-- Postman ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+- Java 21
+- SpringBoot
+- Git
+- IntelliJ IDEA
+- MySQL
+- Postman
+- Maven
 
 ## 🚀 Installation
 
