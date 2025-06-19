@@ -20,8 +20,8 @@ public class ReviewController {
     }
 
     @GetMapping("/reviews/{id}")
-    public ResponseEntity<List<ReviewResponse>> getReviews(@PathVariable Long productId) {
-        List<ReviewResponse> reviews = reviewService.getReviews(productId);
+    public ResponseEntity<List<ReviewResponse>> getReviews(@PathVariable Long id) {
+        List<ReviewResponse> reviews = reviewService.getReviews(id);
         return ResponseEntity.ok(reviews);
     }
 
