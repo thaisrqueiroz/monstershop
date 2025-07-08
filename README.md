@@ -1,6 +1,6 @@
 ﻿# 👾 Monster Shop - E-Commerce Platform
 
-Monster Shop es an e-commerce application for buying adorable monster plushies, featuring product listings, reviews, and admin management.
+Monster Shop is an e-commerce application for buying adorable monster plushies, featuring product listings, reviews, and admin management.
 
 
 
